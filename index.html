@@ -7,117 +7,719 @@
     <title>Jiayi Zhao | Robotics Engineer</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #111111;
             line-height: 1.6;
         }
 
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 30px;
+        }
+
+        /* Navigation */
+
+        nav {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .logo {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        nav .links {
+            display: flex;
+            gap: 28px;
+            font-size: 14px;
+        }
+
+        nav .links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            padding: 90px 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .eyebrow {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
         h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
+            font-size: clamp(52px, 8vw, 92px);
+            line-height: 0.95;
+            margin: 0 0 30px;
+            letter-spacing: -4px;
         }
 
-        h2 {
-            margin-top: 60px;
+        .hero h2 {
+            font-size: 28px;
+            margin: 0 0 20px;
+            font-weight: 500;
         }
 
-        .subtitle {
-            font-size: 22px;
-            color: #555;
+        .hero p {
+            max-width: 700px;
+            font-size: 18px;
+            color: #555555;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            padding: 12px 20px;
+            border: 1px solid #111111;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        /* Sections */
+
+        section {
+            padding: 100px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 45px;
+        }
+
+        /* Projects */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
         }
 
         .project {
-            border: 1px solid #ddd;
-            padding: 25px;
-            margin: 20px 0;
-            border-radius: 10px;
+            border: 1px solid #dddddd;
+            padding: 30px;
+            min-height: 270px;
+            transition: 0.2s;
         }
 
-        a {
-            color: #0366d6;
-            text-decoration: none;
+        .project:hover {
+            transform: translateY(-4px);
+            border-color: #111111;
+        }
+
+        .project-number {
+            font-size: 13px;
+            color: #777777;
+            margin-bottom: 35px;
+        }
+
+        .project h3 {
+            font-size: 27px;
+            margin: 0 0 12px;
+        }
+
+        .project p {
+            color: #666666;
+            margin-bottom: 25px;
+        }
+
+        .tags {
+            font-size: 13px;
+            color: #555555;
+            margin-bottom: 25px;
+        }
+
+        .project-link {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* About */
+
+        .about {
+            max-width: 800px;
+            font-size: 20px;
+        }
+
+        .about p {
+            color: #555555;
+        }
+
+        /* Experience */
+
+        .experience-item {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 40px;
+            padding: 30px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .experience-date {
+            color: #777777;
+            font-size: 14px;
+        }
+
+        .experience-item h3 {
+            margin: 0 0 8px;
+            font-size: 22px;
+        }
+
+        .experience-item p {
+            margin: 0;
+            color: #666666;
+        }
+
+        /* Skills */
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill {
+            padding: 25px;
+            border: 1px solid #dddddd;
+        }
+
+        .skill h3 {
+            margin-top: 0;
+        }
+
+        .skill p {
+            color: #666666;
+        }
+
+        /* Contact */
+
+        .contact {
+            font-size: 20px;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid #e5e5e5;
+            color: #777777;
+            font-size: 13px;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 700px) {
+
+            nav .links {
+                display: none;
+            }
+
+            .hero {
+                min-height: 550px;
+            }
+
+            .projects,
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Jiayi Zhao</h1>
+<div class="container">
 
-    <div class="subtitle">
-        Robotics Engineer · Autonomous Systems · Computer Vision
-    </div>
+    <!-- NAVIGATION -->
 
-    <p>
-        M.Sc. Robotics, Cognition, Intelligence at Technical University of Munich.
-    </p>
+    <nav>
 
-    <p>
-        <a href="https://github.com/OftenMissYi">GitHub</a>
-        ·
-        <a href="mailto:jiayi.zhao@tum.de">Email</a>
-    </p>
+        <div class="logo">
+            JIAYI ZHAO
+        </div>
 
+        <div class="links">
 
-    <h2>Selected Projects</h2>
-
-    <div class="project">
-        <h3>🦿 Bionic Lower-Limb Exoskeleton</h3>
-
-        <p>
-            Integrated knee joint actuator design including
-            motor selection, planetary gearbox design and simulation.
-        </p>
-
-        <p>
-            <a href="https://github.com/OftenMissYi/Bionic-Lower-Limb-Exoskeleton-Integrated-Joint">
-                View on GitHub →
+            <a href="#projects">
+                Projects
             </a>
-        </p>
-    </div>
-    
-    
-    <div class="project">
-        <h3>🌊 Underwater Robot</h3>
 
-        <p>
-            STM32F429-based underwater robot control system
-            integrating FreeRTOS, PID control, ROS and autonomous navigation.
-        </p>
-
-        <p>
-            <a href="https://github.com/OftenMissYi/Underwater-Robot-STM32F429">
-                View on GitHub →
+            <a href="#about">
+                About
             </a>
-        </p>
-    </div>
 
-
-    <div class="project">
-        <h3>🤖 Autonomous Mobile Robot</h3>
-
-        <p>
-            STM32-based autonomous mobile robot with
-            obstacle avoidance, motor control and Bluetooth communication.
-        </p>
-
-        <p>
-            <a href="https://github.com/OftenMissYi/Autonomous-Mobile-Robot-STM32">
-                View on GitHub →
+            <a href="#experience">
+                Experience
             </a>
-        </p>
-    </div>
- 
 
-    <h2>About</h2>
+            <a href="#skills">
+                Skills
+            </a>
 
-    <p>
-        My interests lie at the intersection of robotics,
-        embedded systems, computer vision and autonomous systems.
-    </p>
+            <a href="#contact">
+                Contact
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                Robotics Engineer
+            </div>
+
+            <h1>
+                Jiayi Zhao
+            </h1>
+
+            <h2>
+                Robotics · Autonomous Systems · Computer Vision
+            </h2>
+
+            <p>
+                M.Sc. student in Robotics, Cognition, Intelligence
+                at the Technical University of Munich, with a background
+                in Robotics Engineering.
+            </p>
+
+            <div class="buttons">
+
+                <a class="button" href="#projects">
+                    View Projects
+                </a>
+
+                <a class="button"
+                   href="https://github.com/OftenMissYi"
+                   target="_blank">
+                    GitHub
+                </a>
+
+                <a class="button"
+                   href="https://www.linkedin.com/in/jiayi-zhao-251452430"
+                   target="_blank">
+                    LinkedIn
+                </a>
+
+                <a class="button"
+                   href="mailto:jiayi.zhao@tum.de">
+                    Email
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- PROJECTS -->
+
+    <section id="projects">
+
+        <div class="section-label">
+            Selected Projects
+        </div>
+
+        <div class="projects">
+
+
+            <!-- PROJECT 01 -->
+
+            <div class="project">
+
+                <div class="project-number">
+                    01 / MECHATRONICS
+                </div>
+
+                <h3>
+                    Bionic Lower-Limb Exoskeleton
+                </h3>
+
+                <div class="tags">
+                    SolidWorks · Siemens NX · ANSYS · Adams
+                </div>
+
+                <p>
+                    Design of an integrated knee joint drive unit
+                    including motor selection, gearbox design and
+                    structural and performance analysis.
+                </p>
+
+                <a class="project-link"
+                   href="https://github.com/OftenMissYi/Bionic-Lower-Limb-Exoskeleton-Integrated-Joint"
+                   target="_blank">
+                    View on GitHub →
+                </a>
+
+            </div>
+
+
+            <!-- PROJECT 02 -->
+
+            <div class="project">
+
+                <div class="project-number">
+                    02 / AUTONOMOUS SYSTEMS
+                </div>
+
+                <h3>
+                    Underwater Robot
+                </h3>
+
+                <div class="tags">
+                    STM32F429 · FreeRTOS · ROS · PID · A* / D*
+                </div>
+
+                <p>
+                    Development of an underwater robot control and
+                    navigation system integrating embedded control,
+                    visual tracking and autonomous path planning.
+                </p>
+
+                <a class="project-link"
+                   href="https://github.com/OftenMissYi/Underwater-Robot-STM32F429"
+                   target="_blank">
+                    View on GitHub →
+                </a>
+
+            </div>
+
+
+            <!-- PROJECT 03 -->
+
+            <div class="project">
+
+                <div class="project-number">
+                    03 / EMBEDDED ROBOTICS
+                </div>
+
+                <h3>
+                    Autonomous Mobile Robot
+                </h3>
+
+                <div class="tags">
+                    STM32 · C · PWM · UART · Sensors
+                </div>
+
+                <p>
+                    STM32-based autonomous mobile robot implementing
+                    motion control, obstacle avoidance and serial
+                    communication.
+                </p>
+
+                <a class="project-link"
+                   href="https://github.com/OftenMissYi/Autonomous-Mobile-Robot-STM32"
+                   target="_blank">
+                    View on GitHub →
+                </a>
+
+            </div>
+
+
+            <!-- PROJECT 04 -->
+
+            <div class="project">
+
+                <div class="project-number">
+                    04 / COMPUTER VISION
+                </div>
+
+                <h3>
+                    Vision-Based Robot
+                </h3>
+
+                <div class="tags">
+                    OpenCV · Computer Vision · Robot Control
+                </div>
+
+                <p>
+                    Vision-based robotic system using color detection,
+                    lane detection and decision logic for autonomous
+                    motion control.
+                </p>
+
+                <a class="project-link"
+                   href="#contact">
+                    Project details coming soon →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="section-label">
+            About
+        </div>
+
+        <div class="about">
+
+            <p>
+                I am an M.Sc. student in Robotics, Cognition,
+                Intelligence at the Technical University of Munich,
+                with a Bachelor's degree in Robotics Engineering
+                from Chongqing University.
+            </p>
+
+            <p>
+                My interests lie at the intersection of robotics,
+                autonomous systems, computer vision, motion control
+                and robot learning.
+            </p>
+
+            <p>
+                My engineering experience spans embedded systems,
+                industrial robotics, mechatronics and intelligent
+                robotic systems.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- EXPERIENCE -->
+
+    <section id="experience">
+
+        <div class="section-label">
+            Experience
+        </div>
+
+
+        <div class="experience-item">
+
+            <div class="experience-date">
+                10.2025 — 01.2026
+            </div>
+
+            <div>
+
+                <h3>
+                    Industrial Automation & Mechatronics Intern
+                </h3>
+
+                <p>
+                    Guizhou Aerospace Wujiang Mechanical & Electrical
+                    Equipment Co., Ltd.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="experience-item">
+
+            <div class="experience-date">
+                09.2025
+            </div>
+
+            <div>
+
+                <h3>
+                    Industrial Robotics Intern
+                </h3>
+
+                <p>
+                    China (Chongqing) Vocational Skills Public
+                    Training Center
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- SKILLS -->
+
+    <section id="skills">
+
+        <div class="section-label">
+            Technical Stack
+        </div>
+
+        <div class="skills">
+
+
+            <div class="skill">
+
+                <h3>
+                    Robotics
+                </h3>
+
+                <p>
+                    ROS · RViz · Gazebo · Motion Planning ·
+                    Autonomous Systems
+                </p>
+
+            </div>
+
+
+            <div class="skill">
+
+                <h3>
+                    Computer Vision
+                </h3>
+
+                <p>
+                    OpenCV · Visual Tracking · 3D Computer Vision
+                </p>
+
+            </div>
+
+
+            <div class="skill">
+
+                <h3>
+                    Control & Embedded
+                </h3>
+
+                <p>
+                    C · C++ · STM32 · FreeRTOS · PID ·
+                    Motor Control · UART
+                </p>
+
+            </div>
+
+
+            <div class="skill">
+
+                <h3>
+                    Engineering & Simulation
+                </h3>
+
+                <p>
+                    SolidWorks · Siemens NX · ANSYS Workbench ·
+                    Adams · MATLAB
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+        <div class="section-label">
+            Contact
+        </div>
+
+        <div class="contact">
+
+            <p>
+                Interested in robotics, autonomous systems and
+                intelligent machines.
+            </p>
+
+            <p>
+                <a href="mailto:jiayi.zhao@tum.de">
+                    jiayi.zhao@tum.de
+                </a>
+            </p>
+
+            <p>
+
+                <a href="https://github.com/OftenMissYi"
+                   target="_blank">
+                    GitHub
+                </a>
+
+                &nbsp; · &nbsp;
+
+                <a href="https://www.linkedin.com/in/jiayi-zhao-251452430"
+                   target="_blank">
+                    LinkedIn
+                </a>
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        © 2026 Jiayi Zhao
+    </footer>
+
+</div>
 
 </body>
 </html>
