@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Underwater Robot Control System | Jiayi Zhao</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #111;
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 70px 40px;
+        }
+
+        /* HERO */
+
+        .hero {
+            padding-bottom: 70px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .project-number {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 48px;
+            line-height: 1.1;
+            margin: 0 0 20px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #555;
+            max-width: 750px;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 40px;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 70px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin: 0 0 15px;
+        }
+
+        .section-intro {
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin: 45px 0 20px;
+        }
+
+        /* PROJECT INFO */
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 35px;
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .info-item span {
+            color: #555;
+        }
+
+        /* GALLERY */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-item h4 {
+            font-size: 16px;
+            margin: 14px 0 6px;
+        }
+
+        .gallery-item p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+            margin: 0;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .centered-item {
+            grid-column: 1 / -1;
+            max-width: 60%;
+            margin: 0 auto;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* TEXT */
+
+        .text-block {
+            max-width: 850px;
+        }
+
+        .text-block p {
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        /* TECH STACK */
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .tech-list span {
+            border: 1px solid #ccc;
+            padding: 7px 12px;
+            font-size: 13px;
+        }
+
+        /* GITHUB */
+
+        .project-link {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #111;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .container {
+                padding: 45px 22px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .gallery,
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- HERO -->
+
+    <header class="hero">
+
+        <div class="eyebrow">
+            02 / Embedded Robotics · Control Systems
+        </div>
+
+        <h1>
+            Underwater Robot<br>
+            Control System
+        </h1>
+
+        <p class="intro">
+            Design and implementation of an embedded control and
+            electrical system for an underwater robot, integrating
+            real-time control, sensor feedback, communication,
+            and autonomous navigation.
+        </p>
+
+        <img
+            class="hero-image"
+            src="images/underwater.jpg"
+            alt="Underwater Robot"
+        >
+
+    </header>
+
+
+    <!-- OVERVIEW -->
+
+    <section>
+
+        <h2>Project Overview</h2>
+
+        <p class="section-intro">
+            Development of the electrical and embedded control system
+            for a small underwater robot, covering system architecture,
+            hardware integration, real-time control, sensor feedback,
+            and motion control.
+        </p>
+
+        <div class="info-grid">
+
+            <div class="info-item">
+                <strong>Role</strong>
+                <span>Embedded Control & Electrical System</span>
+            </div>
+
+            <div class="info-item">
+                <strong>Controller</strong>
+                <span>STM32F429 · RoboMaster C Board</span>
+            </div>
+
+            <div class="info-item">
+                <strong>Onboard Computing</strong>
+                <span>NVIDIA Jetson Xavier NX</span>
+            </div>
+
+            <div class="info-item">
+                <strong>Core Functions</strong>
+                <span>Motion Control · Sensor Integration · Communication</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SYSTEM ARCHITECTURE -->
+
+    <section>
+
+        <h2>System Architecture</h2>
+
+        <p class="section-intro">
+            The control system uses a hierarchical architecture connecting
+            the operator interface, onboard computing, embedded control,
+            sensors, and underwater actuators.
+        </p>
+
+        <div class="gallery">
+
+            <div class="gallery-item full-width">
+
+                <img
+                    src="images/underwater/control-architecture.jpg"
+                    alt="Underwater Robot Control System Architecture"
+                >
+
+                <h4>
+                    Control System Architecture
+                </h4>
+
+                <p>
+                    Hierarchical architecture connecting the upper-level
+                    computer, STM32-based MCU control unit, sensors,
+                    and actuators. User commands are processed by the
+                    onboard computer and translated into low-level control
+                    signals, while sensor and camera data are returned
+                    to the operator.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HARDWARE INTEGRATION -->
+
+    <section>
+
+        <h2>Electrical System Design</h2>
+
+        <p class="section-intro">
+            Design and integration of the onboard electrical system within
+            the constrained cylindrical enclosure, with emphasis on
+            modularity, maintainability, thermal management, and system
+            integration.
+        </p>
+
+        <div class="gallery">
+
+            <div class="gallery-item">
+
+                <img
+                    src="images/underwater/electrical-model.jpg"
+                    alt="Parametric Model of the Electrical Equipment"
+                >
+
+                <h4>
+                    Parametric Electrical Equipment Model
+                </h4>
+
+                <p>
+                    Parametric layout of the internal electrical equipment,
+                    providing a modular basis for component positioning,
+                    installation, and system integration.
+                </p>
+
+            </div>
+
+
+            <div class="gallery-item">
+
+                <img
+                    src="images/underwater/electrical-installation.jpg"
+                    alt="Installation of Electrical Equipment"
+                >
+
+                <h4>
+                    Electrical Equipment Installation
+                </h4>
+
+                <p>
+                    Installation arrangement of the onboard electrical
+                    components within the sealed enclosure, designed to
+                    maintain structural clearance and facilitate maintenance.
+                </p>
+
+            </div>
+
+
+            <div class="gallery-item centered-item">
+
+                <img
+                    src="images/underwater/electrical-layout.jpg"
+                    alt="Physical Layout of the Electrical Equipment"
+                >
+
+                <h4>
+                    Physical Electrical Equipment Layout
+                </h4>
+
+                <p>
+                    Final physical arrangement of the electrical equipment,
+                    with the main electronics concentrated around the central
+                    support structure to improve integration, weight balance,
+                    and internal accessibility.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTROL -->
+
+    <section>
+
+        <h2>Embedded Control</h2>
+
+        <div class="text-block">
+
+            <p>
+                The embedded control system was implemented around an
+                STM32-based MCU control unit and an NVIDIA Jetson Xavier NX
+                onboard computer. The Xavier handles higher-level command
+                processing and communication, while the MCU performs
+                real-time actuator control.
+            </p>
+
+            <p>
+                The control software uses FreeRTOS to organize real-time
+                tasks including sensor acquisition, communication, control
+                computation, and actuator output.
+            </p>
+
+            <p>
+                User commands are processed through ROS on the Xavier and
+                transmitted to the MCU through serial communication. The MCU
+                converts the commands into PWM signals for the underwater
+                thrusters, servo actuator, and lighting system.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SENSORS -->
+
+    <section>
+
+        <h2>Sensor & Actuator Integration</h2>
+
+        <div class="text-block">
+
+            <p>
+                The embedded system integrates a USB camera and an MS5837
+                depth sensor for visual feedback and underwater depth
+                measurement. Depth data is acquired by the MCU and used
+                as feedback for motion control.
+            </p>
+
+            <p>
+                The actuator system consists of four underwater thrusters,
+                a servo-driven gripper, and an underwater light. The MCU
+                generates the corresponding control signals according to
+                commands received from the onboard computer.
+            </p>
+
+            <p>
+                This architecture separates high-level computation from
+                deterministic low-level control, allowing perception,
+                command processing, and real-time actuator control to
+                operate as coordinated subsystems.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- NAVIGATION -->
+
+    <section>
+
+        <h2>Motion Control & Navigation</h2>
+
+        <div class="text-block">
+
+            <p>
+                A mathematical model of the underwater robot was developed
+                to describe its translational and rotational motion under
+                the forces and moments generated by the four thrusters.
+            </p>
+
+            <p>
+                The motion-control pipeline consists of position control,
+                attitude control, control allocation, and motor control.
+                The calculated motion commands are converted into individual
+                thruster commands and transmitted to the embedded controller.
+            </p>
+
+            <p>
+                ROS-based control and perception were integrated with the
+                embedded system to support visual tracking and higher-level
+                navigation. A* and D* path-planning methods were also
+                incorporated for autonomous navigation.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- TECHNOLOGIES -->
+
+    <section>
+
+        <h2>Technologies</h2>
+
+        <div class="tech-list">
+
+            <span>STM32F429</span>
+            <span>FreeRTOS</span>
+            <span>C</span>
+            <span>PID Control</span>
+            <span>ROS</span>
+            <span>OpenCV</span>
+            <span>Jetson Xavier NX</span>
+            <span>PWM</span>
+            <span>Serial Communication</span>
+            <span>Sensor Integration</span>
+            <span>Motion Control</span>
+            <span>A* / D*</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- GITHUB -->
+
+    <section>
+
+        <h2>Project Repository</h2>
+
+        <p class="section-intro">
+            Source code, documentation, and project materials are available
+            in the project repository.
+        </p>
+
+        <a
+            class="project-link"
+            href="https://github.com/OftenMissYi/Underwater-Robot-STM32F429"
+            target="_blank"
+        >
+            View on GitHub →
+        </a>
+
+    </section>
+
+
+</div>
+
+</body>
+</html>
