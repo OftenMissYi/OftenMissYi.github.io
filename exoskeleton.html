@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bionic Lower-Limb Exoskeleton | Jiayi Zhao</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #111111;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: auto;
+            padding: 0 30px;
+        }
+
+        nav {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .logo {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .back {
+            font-size: 14px;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            padding: 100px 0 70px;
+        }
+
+        .eyebrow {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 1;
+            letter-spacing: -3px;
+            margin: 0 0 30px;
+            max-width: 900px;
+        }
+
+        .intro {
+            max-width: 750px;
+            font-size: 20px;
+            color: #555555;
+        }
+
+        .hero-image {
+            width: 100%;
+            margin-top: 55px;
+            display: block;
+        }
+
+        section {
+            padding: 75px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            max-width: 780px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin: 0 0 20px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 35px;
+        }
+
+        p {
+            color: #555555;
+        }
+
+        ul {
+            color: #555555;
+            padding-left: 22px;
+        }
+
+        .specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .spec {
+            border: 1px solid #dddddd;
+            padding: 22px;
+        }
+
+        .spec strong {
+            display: block;
+            color: #111111;
+            margin-bottom: 5px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 35px;
+        }
+
+        .gallery img {
+            width: 100%;
+            display: block;
+        }
+
+        .github-button {
+            display: inline-block;
+            border: 1px solid #111111;
+            padding: 12px 20px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .github-button:hover {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid #e5e5e5;
+            color: #777777;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+            .specs,
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <nav>
+        <div class="logo">
+            JIAYI ZHAO
+        </div>
+
+        <a class="back" href="index.html">
+            ← Back to Projects
+        </a>
+    </nav>
+
+
+    <!-- HERO -->
+
+    <header class="hero">
+
+        <div class="eyebrow">
+            01 / Mechatronics · Robotics
+        </div>
+
+        <h1>
+            Bionic Lower-Limb Exoskeleton
+        </h1>
+
+        <p class="intro">
+            Design and performance analysis of an integrated knee
+            joint drive unit for a bionic lower-limb exoskeleton.
+        </p>
+
+        <img
+            class="hero-image"
+            src="images/exoskeleton.jpg"
+            alt="Bionic Lower-Limb Exoskeleton"
+        >
+
+    </header>
+
+
+    <!-- OVERVIEW -->
+
+    <section>
+
+        <div class="section-label">
+            Overview
+        </div>
+
+        <div class="content">
+
+            <h2>
+                Integrated Joint Drive Unit
+            </h2>
+
+            <p>
+                This project focused on the mechanical and drive-system
+                design of an integrated knee joint for a bionic
+                lower-limb exoskeleton.
+            </p>
+
+            <p>
+                The work included actuator selection, gearbox design,
+                mechanical integration and structural and performance
+                analysis of the joint drive system.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- OBJECTIVE -->
+
+    <section>
+
+        <div class="section-label">
+            Objective
+        </div>
+
+        <div class="content">
+
+            <h2>
+                Design Goals
+            </h2>
+
+            <ul>
+                <li>Develop an integrated knee joint drive unit.</li>
+                <li>Select a suitable motor and transmission system.</li>
+                <li>Evaluate structural performance of the mechanical design.</li>
+                <li>Analyse the drive system under relevant operating conditions.</li>
+                <li>Balance torque, size, mass and mechanical performance.</li>
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SYSTEM DESIGN -->
+
+    <section>
+
+        <div class="section-label">
+            System Design
+        </div>
+
+        <div class="content">
+
+            <h2>
+                Mechanical Architecture
+            </h2>
+
+            <p>
+                The joint was designed as an integrated actuator module,
+                combining the motor, transmission mechanism and structural
+                components into a compact mechanical assembly.
+            </p>
+
+            <div class="specs">
+
+                <div class="spec">
+                    <strong>Actuation</strong>
+                    Electric motor drive
+                </div>
+
+                <div class="spec">
+                    <strong>Transmission</strong>
+                    Gear reduction system
+                </div>
+
+                <div class="spec">
+                    <strong>Application</strong>
+                    Bionic lower-limb exoskeleton
+                </div>
+
+                <div class="spec">
+                    <strong>Analysis</strong>
+                    Structural & performance analysis
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ENGINEERING -->
+
+    <section>
+
+        <div class="section-label">
+            Engineering Work
+        </div>
+
+        <div class="content">
+
+            <h2>
+                Design & Analysis
+            </h2>
+
+            <h3>
+                Motor Selection
+            </h3>
+
+            <p>
+                Motor selection was carried out according to the required
+                torque, speed, power and integration constraints of the
+                knee joint.
+            </p>
+
+            <h3>
+                Gearbox Design
+            </h3>
+
+            <p>
+                The transmission system was designed to provide the required
+                output torque while maintaining a compact and practical
+                actuator architecture.
+            </p>
+
+            <h3>
+                Structural Analysis
+            </h3>
+
+            <p>
+                Structural analysis was performed to evaluate the mechanical
+                behaviour of the joint components and identify potential
+                design constraints.
+            </p>
+
+            <h3>
+                Performance Analysis
+            </h3>
+
+            <p>
+                The drive system was evaluated in terms of its mechanical
+                and actuation characteristics to assess whether the design
+                met the intended requirements.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- GALLERY -->
+
+    <section>
+
+        <div class="section-label">
+            Project Gallery
+        </div>
+
+        <div class="content">
+
+            <h2>
+                Design Development
+            </h2>
+
+            <p>
+                Selected CAD models, simulations and engineering results.
+            </p>
+
+            <div class="gallery">
+
+                <img
+                    src="images/exoskeleton.jpg"
+                    alt="Exoskeleton CAD design"
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GITHUB -->
+
+    <section>
+
+        <div class="section-label">
+            Repository
+        </div>
+
+        <div class="content">
+
+            <h2>
+                Source & Documentation
+            </h2>
+
+            <p>
+                Project files, documentation and technical details are
+                available on GitHub.
+            </p>
+
+            <a
+                class="github-button"
+                href="https://github.com/OftenMissYi/Bionic-Lower-Limb-Exoskeleton-Integrated-Joint"
+                target="_blank"
+            >
+                View Project on GitHub →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        © 2026 Jiayi Zhao
+    </footer>
+
+</div>
+
+</body>
+</html>
