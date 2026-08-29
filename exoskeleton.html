@@ -149,10 +149,40 @@
             margin-top: 35px;
         }
 
+        .gallery-title {
+            font-size: 20px;
+            margin-top: 55px;
+            margin-bottom: 20px;
+        }
+
         .gallery img {
             width: 100%;
+            height: auto;
             display: block;
         }
+        
+        .gallery-item h4 {
+            font-size: 16px;
+            margin-top: 14px;
+            margin-bottom: 6px;
+        }
+
+        .gallery-item p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        .analysis-gallery {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .dynamics-gallery {
+            grid-template-columns: 1fr;
+        }
+       
+        /* Duplicate rule removed */
 
         .github-button {
             display: inline-block;
@@ -412,12 +442,281 @@
                 Selected CAD models, simulations and engineering results.
             </p>
 
-            <div class="gallery">
+            <h3 class="gallery-title">
+                CAD Design
+            </h3>
+
+            <div class="gallery cad-gallery">
+
+                <div class="gallery-item">
+
+                    <img
+                        src="images/exoskeleton/cad-model.jpg"
+                        alt="3D Model of the Exoskeleton"
+                    >
+
+                    <h4>
+                        3D Model of the Exoskeleton
+                    </h4>
+
+                    <p>
+                        Overall CAD model of the bionic lower-limb exoskeleton,
+                        showing the integrated mechanical architecture and joint arrangement.
+                    </p>
+
+                </div>
+
+                <div class="gallery-item">
+
+                    <img
+                        src="images/exoskeleton/structure-replacement.jpg"
+                        alt="Structure after Drive Unit Replacement"
+                    >
+
+                    <h4>
+                        Structure after Drive Unit Replacement
+                    </h4>
+
+                    <p>
+                        Structural configuration after replacing the original drive unit,
+                        highlighting the redesigned mechanical interface and support structure.
+                    </p>
+
+                </div>
+
+                <div class="gallery-item">
+
+                    <img
+                        src="images/exoskeleton/exploded-assembly.jpg"
+                        alt="Exploded Assembly View of the Drive Unit"
+                    >
+
+                    <h4>
+                        Exploded Assembly View of the Drive Unit
+                    </h4>
+
+                    <p>
+                        Exploded view illustrating the main components and assembly
+                        relationships of the integrated drive unit.
+                    </p>
+
+                </div>
+
+                <div class="gallery-item">
+
+                    <img
+                        src="images/exoskeleton/sectional-view.jpg"
+                        alt="Sectional View of the Drive Unit"
+                    >
+
+                    <h4>
+                        Sectional View of the Drive Unit
+                    </h4>
+
+                    <p>
+                        Sectional view revealing the internal transmission layout,
+                        including the planetary gear mechanism and structural interfaces.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <h3 class="gallery-title">
+                Structural Analysis — ANSYS
+            </h3>
+
+            <div class="gallery analysis-gallery">
+
+                <div class="gallery-item">
+
+                    <img
+                        src="images/exoskeleton/ansys-von-mises-21nm.jpg"
+                        alt="von Mises Stress Distribution at 21 N·m"
+                    >
+
+                    <h4>
+                        von Mises Stress — 21 N·m
+                    </h4>
+
+                    <p>
+                        Stress distribution of the planetary gear reducer under a
+                        21 N·m input torque condition.
+                    </p>
+
+                </div>
+
+                <div class="gallery-item">
+
+                    <img
+                        src="images/exoskeleton/ansys-von-mises-55nm.jpg"
+                        alt="von Mises Stress Distribution at 55 N·m"
+                    >
+
+                    <h4>
+                        von Mises Stress — 55 N·m
+                    </h4>
+
+                    <p>
+                        Stress distribution of the planetary gear reducer under a
+                        55 N·m input torque condition, representing the higher-load case.
+                    </p>
+
+                </div>
+
+                <div class="gallery-item">
+
+                    <img
+                        src="images/exoskeleton/ansys-strain.jpg"
+                        alt="Strain Distribution of the Planetary Gear Reducer"
+                    >
+
+                    <h4>
+                        Strain Distribution
+                    </h4>
+
+                    <p>
+                        Strain distribution of the planetary gear reducer,
+                        showing the deformation response of the transmission components
+                        under the applied loading condition.
+                    </p>
+
+                </div>
+
+                <div class="gallery-item">
+
+                    <img
+                        src="images/exoskeleton/ansys-total-deformation.jpg"
+                        alt="Total Deformation Distribution of the Planetary Gear Reducer"
+                    >
+
+                    <h4>
+                        Total Deformation
+                    </h4>
+
+                    <p>
+                        Total deformation of the planetary gear reducer under the
+                        applied loading condition, used to evaluate the structural
+                        displacement of the transmission system.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <h3 class="gallery-title">
+            Dynamic Simulation — Adams
+        </h3>
+
+        <div class="gallery dynamics-gallery">
+
+            <div class="gallery-item">
 
                 <img
-                    src="images/exoskeleton.jpg"
-                    alt="Exoskeleton CAD design"
+                    src="images/exoskeleton/adams-input-torque.jpg"
+                    alt="Input Curve of Resistive Torque"
                 >
+
+                <h4>
+                    Input Curve of Resistive Torque
+                </h4>
+
+                <p>
+                    Applied resistive torque profile used as the input condition
+                    for evaluating the dynamic response of the drive system.
+                </p>
+
+            </div>
+
+            <div class="gallery-item">
+
+                <img
+                    src="images/exoskeleton/adams-output-velocity.jpg"
+                    alt="Output Angular Velocity of the Carrier"
+                >
+
+                <h4>
+                    Output Angular Velocity of the Carrier
+                </h4>
+
+                <p>
+                    Simulated angular velocity response of the planetary carrier
+                    under the applied dynamic loading condition.
+                </p>
+
+            </div>
+
+            <div class="gallery-item">
+
+                <img
+                    src="images/exoskeleton/adams-motor-torque.jpg"
+                    alt="Motor Driving Torque Response"
+                >
+
+                <h4>
+                    Motor Driving Torque Response
+                </h4>
+
+                <p>
+                    Simulated motor torque response required to drive the
+                    planetary transmission under the applied load.
+                </p>
+
+            </div>
+
+            <div class="gallery-item">
+
+                <img
+                    src="images/exoskeleton/adams-sun-planet-force.jpg"
+                    alt="Mesh Force Between Sun Gear and Planet Gear"
+                >
+
+                <h4>
+                    Mesh Force — Sun Gear / Planet Gear
+                </h4>
+
+                <p>
+                    Simulated mesh force between the sun gear and planet gear,
+                    characterizing the load transfer within the planetary stage.
+                </p>
+
+            </div>
+
+            <div class="gallery-item">
+
+                <img
+                    src="images/exoskeleton/adams-planet-ring-force.jpg"
+                    alt="Mesh Force Between Planet Gear and Ring Gear"
+                >
+
+                <h4>
+                    Mesh Force — Planet Gear / Ring Gear
+                </h4>
+
+                <p>
+                    Simulated mesh force between the planet gear and ring gear,
+                    showing the corresponding load transfer in the planetary stage.
+                </p>
+
+            </div>
+
+            <div class="gallery-item">
+
+                <img
+                    src="images/exoskeleton/adams-transmission-error.jpg"
+                    alt="Transmission Error"
+                >
+
+                <h4>
+                    Transmission Error
+                </h4>
+
+                <p>
+                    Simulated transmission error of the planetary gear reducer,
+                    used to evaluate the dynamic accuracy of the transmission system.
+                </p>
 
             </div>
 
