@@ -16,3 +16,120 @@
 @media(max-width:700px){.interactive .project-card,.interactive .project-card.is-active{flex:none}}
 .project-toggle{display:block;position:relative;padding-right:18px;overflow-wrap:anywhere}.expand-mark{position:absolute;right:0;top:0}
 @media(min-width:701px) and (max-width:1100px){.projects-grid.interactive{flex-direction:column;gap:14px}.interactive .project-card,.interactive .project-card.is-active{flex:none;min-height:0;display:grid;grid-template-columns:120px minmax(0,1fr)}.interactive .project-card.is-active{grid-template-columns:40% minmax(0,1fr)}.interactive .project-visual,.interactive .project-card.is-active .project-visual{height:100%;min-height:130px;padding:20px}.interactive .project-copy{padding:25px}.interactive .project-copy h3{font-size:23px;margin:0}.interactive .is-active .project-copy h3{font-size:28px;margin-bottom:18px}.interactive .category{min-height:0;margin-bottom:12px}}
+
+/* Persistent navigation; the marker moves without shifting the labels. */
+.header-bar {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  background: rgba(243, 247, 250, .96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header { height: 78px; }
+.nav-links { position: relative; padding: 10px 0; }
+.nav-links > a { position: relative; z-index: 1; transition: color .2s; }
+.nav-links > a[aria-current] { color: var(--blue); }
+.nav-indicator {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  height: 2px;
+  width: var(--marker-width, 0px);
+  transform: translateX(var(--marker-left, 0px));
+  background: var(--blue);
+  opacity: var(--marker-opacity, 0);
+  pointer-events: none;
+  transition: transform .25s ease, width .25s ease, opacity .18s;
+}
+.nav-links > a:hover::after, .nav-links > a:focus-visible::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -8px;
+  height: 2px; background: var(--blue);
+}
+.nav-links.marker-ready > a::after { display: none; }
+.case-nav { top: 112px; }
+.case-section { scroll-margin-top: 20px; }
+html { scroll-padding-top: 100px; }
+.award time { flex: 0 0 78px; font-size: 13px; padding-top: 2px; }
+.school-item h3 { font-size: 20px; }
+.about-grid h2 { max-width: none; }
+
+/* A map of actual work: each point reveals the relevant project and tools. */
+.work-map {
+  border: 1px solid #d1deeb;
+  border-radius: 14px;
+  background: #eaf1f8;
+  min-width: 0;
+  overflow: hidden;
+}
+.map-heading { padding: 25px 28px 0; }
+.map-heading h2 { font-size: 18px; letter-spacing: -.02em; margin-bottom: 7px; }
+.map-heading p { font-size: 12px; color: var(--slate); margin: 0; }
+.map-canvas { height: 292px; position: relative; }
+.map-canvas svg { position: absolute; width: 100%; height: 100%; inset: 0; }
+.map-center {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  font: 500 14px var(--title); color: var(--slate);
+}
+.map-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border: 0;
+  background: transparent;
+  padding: 14px 9px;
+  min-height: 66px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  font: 500 13px var(--title);
+  color: var(--ink);
+  border-radius: 7px;
+}
+.node-planning { left: 24%; top: 24%; }
+.node-signals { left: 76%; top: 24%; }
+.node-mechanics { left: 76%; top: 76%; }
+.node-embedded { left: 24%; top: 76%; }
+.map-dot {
+  display: block; width: 12px; height: 12px;
+  border: 2px solid var(--blue); background: var(--ice); border-radius: 50%;
+  box-shadow: 0 0 0 6px #eaf1f8;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.map-node[aria-pressed="true"] .map-dot,
+.map-node:hover .map-dot,
+.map-node:focus-visible .map-dot {
+  transform: scale(1.5); background: var(--blue); box-shadow: 0 0 0 6px #cfddfa;
+}
+.map-node[aria-pressed="true"] { color: var(--blue); }
+.map-details { background: white; padding: 25px 28px 27px; border-top: 1px solid #d1deeb; min-height: 228px; }
+.map-keywords { font: 500 12px/1.6 var(--title); color: var(--blue); margin: 0 0 12px; }
+.map-details h3 { font-size: 26px; margin-bottom: 12px; }
+.map-description { font-size: 14px; color: var(--slate); margin-bottom: 14px; }
+.map-link { font: 500 13px var(--title); }
+@media (max-width: 1000px) {
+  .map-node { width: 132px; font-size: 12px; }
+  .map-heading { padding: 23px 22px 0; }
+  .map-details { padding: 23px 22px; min-height: 254px; }
+}
+@media (max-width: 700px) {
+  .site-header { height: 72px; }
+  .nav-links { position: absolute; padding: 22px; top: 64px; }
+  .nav-indicator { display: none; }
+  .nav-links.marker-ready > a:focus-visible::after { display: block; }
+  .work-map { width: 100%; }
+  .map-heading h2 { font-size: 17px; }
+  .map-canvas { height: 270px; }
+  .map-node { width: 132px; }
+  .map-details { min-height: 238px; }
+  .map-details h3 { font-size: 25px; }
+  .case-nav { position: static; }
+  html { scroll-padding-top: 90px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-dot { transition: none; }
+}

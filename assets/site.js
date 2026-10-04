@@ -55,19 +55,78 @@ if (projects) {
   });
 }
 
-// A small, pointer-driven perspective response; no autoplay or scroll hijacking.
-const art = document.querySelector('.hero-art');
-const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-if (art) {
-  art.addEventListener('pointermove', (event) => {
-    if (motion.matches || event.pointerType !== 'mouse') return;
-    const rect = art.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    art.style.setProperty('--tilt-x', `${-y * 7}deg`);
-    art.style.setProperty('--tilt-y', `${x * 9}deg`);
+
+// Move one underline between hover, keyboard focus and the section in view.
+if (navigation) {
+  const links = [...navigation.querySelectorAll('a')];
+  const localSections = links.map(link => document.getElementById(link.hash.slice(1)));
+  const onHome = localSections.some(Boolean);
+  let current = onHome ? null : links[0];
+  let hovered = null;
+  const drawMarker = () => {
+    const focused = links.includes(document.activeElement) ? document.activeElement : null;
+    const target = hovered || focused || current;
+    navigation.style.setProperty('--marker-opacity', target ? '1' : '0');
+    if (target) {
+      const navRect = navigation.getBoundingClientRect();
+      const rect = target.getBoundingClientRect();
+      navigation.style.setProperty('--marker-left', `${rect.left - navRect.left}px`);
+      navigation.style.setProperty('--marker-width', `${rect.width}px`);
+    }
+  };
+  const updateCurrent = () => {
+    if (onHome) {
+      current = null;
+      localSections.forEach((section, index) => {
+        if (section && section.getBoundingClientRect().top <= 155) current = links[index];
+      });
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 5) current = links.at(-1);
+    }
+    links.forEach(link => {
+      if (link === current) link.setAttribute('aria-current', onHome ? 'location' : 'page');
+      else link.removeAttribute('aria-current');
+    });
+    drawMarker();
+  };
+  links.forEach(link => {
+    link.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') { hovered = link; drawMarker(); } });
+    link.addEventListener('focus', drawMarker);
   });
-  const resetArt = () => { art.style.setProperty('--tilt-x', '0deg'); art.style.setProperty('--tilt-y', '0deg'); };
-  art.addEventListener('pointerleave', resetArt);
-  motion.addEventListener('change', resetArt);
+  navigation.addEventListener('pointerleave', () => { hovered = null; drawMarker(); });
+  navigation.addEventListener('focusout', () => requestAnimationFrame(drawMarker));
+  let scheduled = false;
+  window.addEventListener('scroll', () => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => { scheduled = false; updateCurrent(); });
+  }, { passive: true });
+  window.addEventListener('resize', drawMarker);
+  document.fonts.ready.then(drawMarker);
+  navigation.classList.add('marker-ready');
+  updateCurrent();
+}
+
+const workMap = document.querySelector('.work-map');
+if (workMap) {
+  const nodes = [...workMap.querySelectorAll('.map-node')];
+  const selectNode = (node) => {
+    nodes.forEach(item => item.setAttribute('aria-pressed', String(item === node)));
+    workMap.querySelector('.map-keywords').textContent = node.dataset.keywords;
+    workMap.querySelector('.map-details h3').textContent = node.dataset.title;
+    workMap.querySelector('.map-description').textContent = node.dataset.description;
+    const link = workMap.querySelector('.map-link');
+    link.href = node.dataset.href;
+    link.setAttribute('aria-label', `Read case study: ${node.dataset.title}`);
+  };
+  nodes.forEach((node, index) => {
+    node.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') selectNode(node); });
+    node.addEventListener('focus', () => selectNode(node));
+    node.addEventListener('click', () => selectNode(node));
+    node.addEventListener('keydown', event => {
+      if (!['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp'].includes(event.key)) return;
+      event.preventDefault();
+      const direction = ['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : -1;
+      nodes[(index + direction + nodes.length) % nodes.length].focus();
+    });
+  });
 }
