@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jiayi Zhao's UAV project: A-star and Theta-star path planning, Minimum-Snap trajectory optimization and PID tracking in MATLAB.">
+    <title>UAV Path Planning &amp; Trajectory Control | Jiayi Zhao</title>
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #111111;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: auto;
+            padding: 0 30px;
+        }
+
+        nav {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .logo {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .back {
+            font-size: 14px;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            padding: 100px 0 70px;
+        }
+
+        .eyebrow {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 1;
+            letter-spacing: -3px;
+            margin: 0 0 30px;
+            max-width: 900px;
+        }
+
+        .intro {
+            max-width: 750px;
+            font-size: 20px;
+            color: #555555;
+        }
+
+        .hero-image {
+            width: 100%;
+            margin-top: 55px;
+            display: block;
+        }
+
+        section {
+            padding: 75px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            max-width: 780px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin: 0 0 20px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 35px;
+        }
+
+        p {
+            color: #555555;
+        }
+
+        ul {
+            color: #555555;
+            padding-left: 22px;
+        }
+
+        .specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .spec {
+            border: 1px solid #dddddd;
+            padding: 22px;
+        }
+
+        .spec strong {
+            display: block;
+            color: #111111;
+            margin-bottom: 5px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 35px;
+        }
+
+        .gallery-title {
+            font-size: 20px;
+            margin-top: 55px;
+            margin-bottom: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-item h4 {
+            font-size: 16px;
+            margin-top: 14px;
+            margin-bottom: 6px;
+        }
+
+        .gallery-item p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        .electrical-gallery {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .electrical-gallery .gallery-item img {
+            height: 320px;
+            object-fit: contain;
+        }
+
+        .electrical-gallery .centered-item {
+            grid-column: 1 / -1;
+            max-width: 65%;
+            margin: 0 auto;
+        }
+
+        .control-gallery {
+            grid-template-columns: 1fr;
+        }
+
+        .control-gallery .gallery-item img {
+            width: 100%;
+        }
+
+        .github-button {
+            display: inline-block;
+            border: 1px solid #111111;
+            padding: 12px 20px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .github-button:hover {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid #e5e5e5;
+            color: #777777;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+
+            .specs,
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .electrical-gallery .centered-item {
+                grid-column: auto;
+                max-width: 100%;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+        }
+
+    
+        .figure { margin: 35px 0 0; }
+        .figure img { width: 100%; height: auto; display: block; }
+        figcaption { font-size: 14px; color: #666666; margin-top: 14px; }
+        .resource-links { display: flex; gap: 12px; flex-wrap: wrap; }
+        .pipeline { padding-left: 22px; color: #555555; }
+        .pipeline li { margin-bottom: 12px; }
+        .content a:not(.github-button) { text-decoration: underline; text-underline-offset: 3px; }
+        @media (max-width: 700px) {
+            nav { gap: 16px; }
+            .back { text-align: right; }
+            .spec { min-width: 0; overflow-wrap: anywhere; }
+        }
+
+    
+        .results-table { width: 100%; border-collapse: collapse; margin: 30px 0 15px; font-size: 15px; }
+        .results-table th, .results-table td { padding: 14px 10px; border-bottom: 1px solid #dddddd; text-align: left; }
+        .results-table th { color: #111111; }
+        .results-table td { color: #555555; }
+        .table-wrap { overflow-x: auto; }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <nav>
+        <div class="logo">JIAYI ZHAO</div>
+        <a class="back" href="index.html#projects">← Back to Projects</a>
+    </nav>
+    <header class="hero">
+        <div class="eyebrow">01 / Robot Control · Motion Planning</div>
+        <h1>UAV Path Planning &amp; Trajectory Control</h1>
+        <p class="intro">From discrete 3D paths to smooth Minimum-Snap trajectories
+            and closed-loop tracking in MATLAB.</p>
+        <figure class="figure">
+            <a href="images/uav/minimum-snap.jpg" target="_blank" rel="noopener noreferrer">
+                <img class="hero-image" src="images/uav/minimum-snap.jpg"
+                     alt="MATLAB Minimum-Snap simulation with 3D trajectory, attitude, velocity and position tracking plots">
+            </a>
+            <figcaption>Minimum-Snap trajectory and tracking responses from the final project report, Figure 4.7. Open the image to inspect the plots.</figcaption>
+        </figure>
+    </header>
+    <section>
+        <div class="section-label">Overview</div>
+        <div class="content">
+            <h2>Planning, Trajectory Generation &amp; Control</h2>
+            <p>A team course project at Chongqing University connecting geometric path
+                planning with continuous-time UAV motion. Four stages cover path tracking,
+                A*/Theta* planning, a dynamic height penalty and Minimum-Snap trajectory generation.</p>
+            <p>The work was implemented and evaluated in MATLAB simulation, using
+                a provided PID controller to track the generated reference states.</p>
+            <div class="specs">
+                <div class="spec"><strong>Context</strong>Team course project · Chongqing University</div>
+                <div class="spec"><strong>Period</strong>December 2025–January 2026</div>
+                <div class="spec"><strong>My Role</strong>Team leader · Minimum-Snap implementation lead</div>
+                <div class="spec"><strong>Environment</strong>MATLAB · 3D obstacle maps · UAV simulation</div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="section-label">My Contribution</div>
+        <div class="content">
+            <h2>Team Leadership &amp; Trajectory Optimization</h2>
+            <p>I coordinated the overall team work and participated across all four tasks.
+                My main technical focus was leading the implementation of the final
+                Minimum-Snap trajectory generator and integrating its desired states
+                with the provided tracking controller.</p>
+            <p>The implementation uses seventh-order polynomials and quadratic optimization
+                to connect discrete waypoints with smooth trajectory segments. I also
+                contributed to path-planning experiments, simulation evaluation and
+                the consolidation of the final report.</p>
+        </div>
+    </section>
+    <section>
+        <div class="section-label">Technical Approach</div>
+        <div class="content">
+            <h2>Four Stages of Development</h2>
+            <h3>01 · Reference Path Tracking</h3>
+            <p>Allocate a 25-second trajectory duration in proportion to segment lengths,
+                generate piecewise-linear position and velocity references, and derive yaw
+                from the motion direction with protection near zero velocity.</p>
+            <h3>02 · A* and Theta* Planning</h3>
+            <p>Plan paths in a known 3D occupancy grid. A* uses six-neighbor connectivity;
+                Theta* adds line-of-sight checks to connect nodes at arbitrary angles
+                and reduce unnecessary grid-constrained turns.</p>
+            <h3>03 · Dynamic Height Penalty</h3>
+            <p>Add a penalty for deviation from a progress-dependent reference altitude.
+                This shapes vertical motion while searching through the obstacle environment.
+                The Theta* variant also penalizes large single-step vertical jumps.</p>
+            <h3>04 · Minimum-Snap Trajectory Generation</h3>
+            <p>Represent each segment with a seventh-order polynomial and minimize the
+                integral of squared snap, the fourth derivative of position. Solve for
+                coefficients with MATLAB's <code>quadprog</code>, subject to waypoint
+                and inter-segment continuity constraints through jerk.</p>
+            <p>Optimization is performed during initialization. Subsequent time queries
+                evaluate position, velocity and acceleration references for the controller,
+                separating trajectory preparation from tracking.</p>
+        </div>
+    </section>
+    <section>
+        <div class="section-label">Planning Results</div>
+        <div class="content">
+            <h2>A* / Theta* Comparison</h2>
+            <p>In the report's complex-environment scenario, Theta* used fewer waypoints
+                and a shorter path, at the cost of more planning time.</p>
+            <div class="table-wrap">
+                <table class="results-table">
+                    <caption>Task 3 · Reported simulation results (Table 3.1)</caption>
+                    <thead><tr><th scope="col">Metric</th><th scope="col">A*</th><th scope="col">Theta*</th></tr></thead>
+                    <tbody>
+                        <tr><th scope="row">Waypoints</th><td>19</td><td>7</td></tr>
+                        <tr><th scope="row">Path length</th><td>18.0000</td><td>13.2594</td></tr>
+                        <tr><th scope="row">Planning time</th><td>0.012948 s</td><td>0.031532 s</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>This corresponds to approximately 26.3% less path length in that scenario.
+                These are saved project results, not a general performance guarantee or a
+                new benchmark run.</p>
+            <figure class="figure">
+                <a href="images/uav/astar.jpg" target="_blank" rel="noopener noreferrer">
+                    <img src="images/uav/astar.jpg" loading="lazy" alt="A-star path planning and simulated UAV tracking responses">
+                </a>
+                <figcaption>A* planning and tracking in the complex environment — final report, Figure 3.4.</figcaption>
+            </figure>
+            <figure class="figure">
+                <a href="images/uav/theta-star.png" target="_blank" rel="noopener noreferrer">
+                    <img src="images/uav/theta-star.png" loading="lazy" alt="Theta-star path planning and simulated UAV tracking responses">
+                </a>
+                <figcaption>Theta* planning and tracking in the same task — final report, Figure 3.5.</figcaption>
+            </figure>
+        </div>
+    </section>
+    <section>
+        <div class="section-label">Integration</div>
+        <div class="content">
+            <h2>From Waypoints to Tracking References</h2>
+            <p>The final stage connects the planner's waypoint output to the trajectory
+                generator and the provided PID controller. Simulation plots document the
+                resulting 3D motion and the desired versus actual position and velocity.</p>
+            <p>The repository includes MATLAB implementations for all four tasks,
+                task presentations and the final report. The work demonstrates the
+                planning-to-control pipeline in simulation; physical flight validation
+                is outside this project.</p>
+        </div>
+    </section>
+    <section>
+        <div class="section-label">Technologies</div>
+        <div class="content">
+            <div class="specs">
+                <div class="spec"><strong>Planning</strong>A* · Theta* · 3D Occupancy Grids</div>
+                <div class="spec"><strong>Optimization</strong>Minimum Snap · Quadratic Programming</div>
+                <div class="spec"><strong>Trajectory Generation</strong>Seventh-Order Polynomials · Continuity Constraints</div>
+                <div class="spec"><strong>Simulation &amp; Control</strong>MATLAB · PID Tracking</div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="section-label">Repository</div>
+        <div class="content">
+            <h2>Source &amp; Documentation</h2>
+            <p>Explore the MATLAB implementations and original project materials.</p>
+            <div class="resource-links">
+                <a class="github-button" href="https://github.com/OftenMissYi/UAV-Path-Planning-and-Trajectory-Control"
+                   target="_blank" rel="noopener noreferrer">View Project on GitHub →</a>
+                <a class="github-button" href="https://github.com/OftenMissYi/UAV-Path-Planning-and-Trajectory-Control/blob/main/docs/Final-Report.pdf"
+                   target="_blank" rel="noopener noreferrer">Final Report (Chinese) →</a>
+            </div>
+        </div>
+    </section>
+    <footer>© 2026 Jiayi Zhao</footer>
+</div>
+</body>
+</html>
