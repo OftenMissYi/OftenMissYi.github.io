@@ -133,3 +133,25 @@ html { scroll-padding-top: 100px; }
 @media (prefers-reduced-motion: reduce) {
   .map-dot { transition: none; }
 }
+
+/* Exam results retain the labels used on the certificates. */
+.recognition { grid-template-columns: 1.15fr 1fr; gap: 60px; }
+.language-record { padding: 0 0 20px; margin-bottom: 20px; border-bottom: 1px solid var(--line); }
+.language-record h4 { font-size: 20px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.language-record h4 span { font: 400 12px 'Segoe UI',system-ui,sans-serif; letter-spacing: 0; color: var(--slate); }
+.language-record p { font-size: 14px; margin: 0 0 10px; }
+.exam-name { display: flex; justify-content: space-between; gap: 12px; font-weight: 600; }
+.exam-name span { font-size: 12px; font-weight: 400; color: var(--slate); }
+.overall-score strong { color: var(--blue); margin-left: 8px; }
+.exam-scores { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; margin: 10px 0 0; font-size: 13px; }
+.exam-scores > div { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.exam-scores dt { color: var(--slate); }
+.exam-scores dd { margin: 0; font-weight: 600; white-space: nowrap; }
+.language-record .writing-score { margin: 14px 0 0; font-size: 13px; }
+.writing-score strong { margin-left: 6px; }
+.writing-score small { display: block; color: var(--slate); margin-top: 2px; }
+.native-language { display: flex; gap: 18px; border: 0; margin: 0; padding: 0; }
+.native-language p { color: var(--slate); }
+.school-item h3 { font-size: 23px; }
+@media(max-width:1000px) { .recognition { gap: 35px; } .testdaf-scores { grid-template-columns: 1fr; } }
+@media(max-width:700px) { .recognition { grid-template-columns: 1fr; } .testdaf-scores { grid-template-columns: 1fr; } .school-item h3 { font-size: 23px; } }

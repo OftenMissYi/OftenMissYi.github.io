@@ -44,7 +44,11 @@ Do not publish private CV addresses or telephone numbers.
 
 Navigation stays visible in a full-width sticky bar. A single underline follows
 hover and keyboard focus, returning to the current section. Keep type size stable
-to avoid moving click targets. The name links to About on every page.
+to avoid moving click targets. The name returns to the top of the current page.
 
 The older August CV restores the September 2025 internship, both academic
 scholarships, the engineering drawing prize and Guiyang No. 1 High School.
+
+Language results use the labels and values from the supplied IELTS, TestDaF
+and GRE score reports. Only GRE Analytical Writing is included. The newer
+line-view exoskeleton cover is the user-supplied image, copied without editing.
